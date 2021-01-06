@@ -1,21 +1,26 @@
 #include<iostream>
 #include<ctime>
 #include<cstdlib>
+#include<vector>
 #include<string>
+#include<fstream>
 using namespace std;
 
-void print_arr(int arr[], int arrSize);
+void print_vector(vector<int> data);
+void save_score(int guess_count);
 
 void play_game(){
     int randomNumber = rand() % 251;
-    int userGuessArray[randomNumber],guessCount = 0;
+    int counting = 0;
+    vector<int> userGuessVector;
     cout<<randomNumber<<endl;
     while(true)
     {
         int userGuess;
         cout<<"Guess a number: ";
         cin>>userGuess;
-        userGuessArray[guessCount++] = userGuess;
+        counting++;
+        userGuessVector.push_back(userGuess);
         if(userGuess == randomNumber){
             cout<<"Your Guess is Correct!"<<endl;
             break;
@@ -23,8 +28,8 @@ void play_game(){
             cout<<"Wrong Guess!"<<endl;
         }
     }
-    print_arr(userGuessArray, guessCount);
-
+    print_vector(userGuessVector);
+    save_score(counting);
 }
 int main()
 {
@@ -46,10 +51,30 @@ int main()
     }while(choice != 0);
     return 0;
 }
-void print_arr(int arr[], int arrSize)
+void print_vector(vector<int> data)
 {
     cout<<"you have tried following Numbers: ";
-    for(int i = 0; i < arrSize; i++)
-        cout<<arr[i]<<"\t";
+    for(int i = 0; i < data.size(); i++)
+        cout<<data[i]<<"\t";
     cout<<endl;
+}
+void save_score(int guess_count)
+{
+    ifstream input("best_scores.txt");
+    if(!input.is_open()){
+        cout<<"Unable to access the file!"<<endl;
+        return;
+    }
+    int best_score;
+    input>>best_score;
+    ofstream output("best_scores.txt");
+    if(!output.is_open()){
+        cout<<"Unable to access the file!"<<endl;
+        return;
+    }
+    if(guess_count < best_score){
+        output<<guess_count;
+    }else{
+        output<<best_score;
+    }
 }

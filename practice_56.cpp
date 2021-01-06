@@ -2,13 +2,15 @@
 #include<ctime>
 #include<cstdlib>
 #include<string>
+#include<array>
 using namespace std;
 
-void print_arr(int arr[], int arrSize);
+void print_arr(array<int, 251> arr, int arrSize);
 
 void play_game(){
     int randomNumber = rand() % 251;
-    int userGuessArray[randomNumber],guessCount = 0;
+    array<int, 251> userGuessArray;
+    int guessCount = 0;
     cout<<randomNumber<<endl;
     while(true)
     {
@@ -46,7 +48,7 @@ int main()
     }while(choice != 0);
     return 0;
 }
-void print_arr(int arr[], int arrSize)
+void print_arr(array<int, 251> arr, int arrSize)
 {
     cout<<"you have tried following Numbers: ";
     for(int i = 0; i < arrSize; i++)
