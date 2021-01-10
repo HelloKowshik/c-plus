@@ -1,14 +1,14 @@
 #include<iostream>
 #include<string>
-using namespace std;
 
-void swap(int &a, int &b);
-void swap(string &f_name, int &l_name);
+using namespace std;
 
 struct Rectangle{
     double length;
     double width;
 };
+void swap(int &a, int &b);
+void swap(string &f_name, int &l_name);
 
 double area(double length, double width){
     return length * width;
@@ -48,6 +48,7 @@ int main()
     cout<<"Power: "<<pow(3)<<endl;
     return 0;
 }
+
 void swap(int &a, int &b)
 {
     int temp = a;
@@ -55,6 +56,7 @@ void swap(int &a, int &b)
     b = temp;
     cout<<"a: "<<a<<"\tb: "<<b<<endl;
 }
+
 void swap(string &f_name, string &l_name)
 {
     string temp = f_name;
